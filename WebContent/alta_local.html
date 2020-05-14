@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>W3.CSS Template</title>
+<title>Afegir Locals</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -17,8 +17,15 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
   height: inherit;
 }
 </style>
+<script>
+	function altaLocal() {
+		alert("Segur que vols donar d'alta aquest local?");
+		document.requestForm.action = "sAltaLocal";
+		document.requestForm.submit();
+		document.frm.submit();
+	}
+</script>
 <body>
-
 <!-- Navbar -->
 <div class="w3-top">
   <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
@@ -83,14 +90,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 						<td>&#160;</td>
 						<td>&#160;</td>
 						<td style="text-align: center">
-							<button style="width: 200px;
-										height: 40px; 
-										background-color: #4CAF50; 
-										border-top: none; 
-										border-botom: none; 
-										border-left: none; 
-										border-right: none;
-										color: white">
+							<button style="width:200px;height: 40px;background-color:#4CAF50;border-top:none;border-botom:none;border-left:none;border-right:none;color:white" onclick="altaLocal();">
 								SEGÜENT
 							</button>
 						</td>
@@ -102,6 +102,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 <!-- END MAIN -->
 </div>
 <script>
+
 // Get the Sidebar
 var mySidebar = document.getElementById("mySidebar");
 
