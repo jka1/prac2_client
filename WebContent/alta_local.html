@@ -19,10 +19,59 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 </style>
 <script>
 	function altaLocal() {
-		alert("Segur que vols donar d'alta aquest local?");
-		document.requestForm.action = "sAltaLocal";
-		document.requestForm.submit();
-		document.frm.submit();
+		if(comprovarCamps())
+		{
+			alert("Segur que vols donar d'alta aquest local?");
+			document.frm.submit();
+		}	
+	}
+
+	function comprovarCamps() {
+		if(document.getElementById("nomlocal").value == "") {
+			alert("El camp Nom Local és buit");
+			return false;
+		}
+		
+		if(document.getElementById("coditipolocal").value == "0") {
+			alert("El camp Tipus Local és buit");
+			return false;
+		}
+		
+		if(document.getElementById("codicarrer").value == "") {
+			alert("El camp Codi Carrer és buit");
+			return false;
+		} else if(!isValidNum(document.getElementById("codicarrer").value)) {
+			alert("El camp Codi Carrer no conte un numero vàlid");
+			return false;
+		}
+		
+		if(document.getElementById("nomcarrer").value == "") {
+			alert("El camp Nom Carrer és buit");
+			return false;
+		}
+		
+		if(document.getElementById("nomvia").value == "") {
+			alert("El camp Nom Via és buit");
+			return false;
+		}
+		
+		if(document.getElementById("numero").value == "") {
+			alert("El camp Numero és buit");
+			return false;
+		} else if(!isValidNum(document.getElementById("numero").value)) {
+			alert("El camp Numero no conte un numero vàlid");
+			return false;
+		}
+		
+		return true;
+	}
+
+	function isValidNum(value) {
+		var num = Math.floor(Number(value));
+		if(isNaN(num) || num === Infinity || num <= 0)
+			return false;
+		else
+			return true;
 	}
 </script>
 <body>
@@ -43,62 +92,64 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
 <div class="w3-main" style="margin-left:250px">
 	<div class="w3-row w3-padding-64">
-    	<div class="w3-twothird w3-container">
-	      	<h1 class="w3-text-teal">LOCAL</h1>
-			<form id="frm" name="frm" method="post">
-				<table>
-					<tr>
-						<td>Nom Local: <td>
-						<td><input id="nomLocal" name="nomlocal" type="text" style="width:600px"/></td>
-					</tr>
-					<tr>
-						<td>Tipus Local: <td>
-						<td>
-							<select id="coditipolocal" name="coditipolocal" style="width:600px">
-								<option>-	-	-</option>
-								<option id="1">BARS I RESTAURANTS</option>
-								<option id="2">HOTELS</option>
-								<option id="3">COMERÇOS</option>
-								<option id="4">FARMÀCIES</option>
-								<option id="5">LOCALS PÚBLICS</option>
-								<option id="6">ENTITATS BANCÀRIES</option>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<td>Codi Carrer: <td>
-						<td><input id="codicarrer" name="codicarrer" type="text" style="width:600px"/></td>
-					</tr>
-					<tr>
-						<td>Nom Carrer: <td>
-						<td><input id="nomcarrer" name="nomcarrer" type="text" style="width:600px"/></td>
-					</tr>
-					<tr>
-						<td>Nom Via: <td>
-						<td><input id="nomvia" name="nomvia" type="text" style="width:600px"/></td>
-					</tr>
-					<tr>
-						<td>Numero: <td>
-						<td><input id="numero" name="numero" type="text" style="width:600px"/></td>
-					</tr>
-					<tr>
-						<td style="vertical-align: top">Observacions: <td>
-						<td><textarea  rows="4" style="width:600px"></textarea></td>
-					</tr>
-					<tr><td>&#160;</td></tr>
-					<tr>
-						<td>&#160;</td>
-						<td>&#160;</td>
-						<td style="text-align: center">
-							<button style="width:200px;height: 40px;background-color:#4CAF50;border-top:none;border-botom:none;border-left:none;border-right:none;color:white" onclick="altaLocal();">
-								SEGÜENT
-							</button>
-						</td>
-					</tr>
-				</table>
-			</form>
-		</div>
-		</div>
+		<form id="frm" name="frm" method="post" action="sAltaLocal" >
+			<table>
+				<tr>
+					<td>&#160;</td>
+					<td>&#160;</td>
+					<td style="text-align: center"><h1 class="w3-text-teal">LOCAL</h1></td>
+				</tr>
+				<tr>
+					<td>Nom Local: <td>
+					<td><input id="nomlocal" name="nomlocal" type="text" style="width:600px" maxlength="250"/></td>
+				</tr>
+				<tr>
+					<td>Tipus Local: <td>
+					<td>
+						<select id="coditipolocal" name="coditipolocal" style="width:600px">
+							<option value="0">-	-	-</option>
+							<option value="1">BARS I RESTAURANTS</option>
+							<option value="2">HOTELS</option>
+							<option value="3">COMERÇOS</option>
+							<option value="4">FARMÀCIES</option>
+							<option value="5">LOCALS PÚBLICS</option>
+							<option value="6">ENTITATS BANCÀRIES</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Codi Carrer: <td>
+					<td><input id="codicarrer" name="codicarrer" type="text" style="width:600px"/></td>
+				</tr>
+				<tr>
+					<td>Nom Carrer: <td>
+					<td><input id="nomcarrer" name="nomcarrer" type="text" style="width:600px" maxlength="50"/></td>
+				</tr>
+				<tr>
+					<td>Nom Via: <td>
+					<td><input id="nomvia" name="nomvia" type="text" style="width:600px" maxlength="2"/></td>
+				</tr>
+				<tr>
+					<td>Numero: <td>
+					<td><input id="numero" name="numero" type="text" style="width:600px"/></td>
+				</tr>
+				<tr>
+					<td style="vertical-align: top">Observacions: <td>
+					<td><textarea id="observacions" name="observacions" rows="4" style="width:600px" maxlength="300"></textarea></td>
+				</tr>
+				<tr><td>&#160;</td></tr>
+				<tr>
+					<td>&#160;</td>
+					<td>&#160;</td>
+					<td style="text-align: center">
+						<button type="button" style="width:200px;height: 40px;background-color:#4CAF50;border-top:none;border-botom:none;border-left:none;border-right:none;color:white" onclick="altaLocal();">
+							SEGÜENT
+						</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
 <!-- END MAIN -->
 </div>
 <script>
