@@ -8,6 +8,7 @@
 package server;
 
 public interface Dispatcher extends java.rmi.Remote {
+    public server.Local[] getListLocal(java.lang.Long arg0, java.lang.Long arg1, java.lang.Long arg2, java.lang.String arg3, java.lang.String arg4, java.lang.Long arg5, java.lang.String arg6, java.lang.String arg7, java.lang.String arg8, java.lang.Long arg9) throws java.rmi.RemoteException, server.Exception;
     public server.Local verificarLocal(java.lang.Long arg0) throws java.rmi.RemoteException, server.Exception;
     public server.Local altaLocal(java.lang.Long arg0, java.lang.Long arg1, java.lang.String arg2, java.lang.String arg3, java.lang.Long arg4, java.lang.String arg5, java.lang.String arg6, java.lang.String arg7) throws java.rmi.RemoteException, server.Exception;
     public boolean baixaLocal(java.lang.Long arg0) throws java.rmi.RemoteException, server.Exception;

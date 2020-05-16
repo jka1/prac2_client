@@ -31,7 +31,7 @@ public class SvlLlistatLocals extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		try {
 			ServletContext context = getServletContext();
-			context.getRequestDispatcher("/llistat_locals.html").forward(request, response);
+			context.getRequestDispatcher("/llistat_locals.jsp").forward(request, response);
 		} catch(Exception e) {
 			
 		}

@@ -44,6 +44,12 @@ public class DispatcherProxy implements server.Dispatcher {
     return dispatcher;
   }
   
+  public server.Local[] getListLocal(java.lang.Long arg0, java.lang.Long arg1, java.lang.Long arg2, java.lang.String arg3, java.lang.String arg4, java.lang.Long arg5, java.lang.String arg6, java.lang.String arg7, java.lang.String arg8, java.lang.Long arg9) throws java.rmi.RemoteException, server.Exception{
+    if (dispatcher == null)
+      _initDispatcherProxy();
+    return dispatcher.getListLocal(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
+  }
+  
   public server.Local verificarLocal(java.lang.Long arg0) throws java.rmi.RemoteException, server.Exception{
     if (dispatcher == null)
       _initDispatcherProxy();
