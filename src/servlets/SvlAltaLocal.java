@@ -47,10 +47,12 @@ public class SvlAltaLocal extends HttpServlet {
 		try {
 			DispatcherServiceLocator service = new DispatcherServiceLocator();
 			Dispatcher disp = service.getDispatcherPort(); 
-			disp.altaLocal(Long.valueOf(request.getParameter("coditipolocal")), Long.valueOf(request.getParameter("codicarrer")), request.getParameter("nomcarrer"), request.getParameter("nomvia"),
+			Local local = disp.altaLocal(Long.valueOf(request.getParameter("coditipolocal")), Long.valueOf(request.getParameter("codicarrer")), request.getParameter("nomcarrer"), request.getParameter("nomvia"),
 				Long.valueOf(request.getParameter("numero")), request.getParameter("nomlocal"), request.getParameter("observacions"), "");
-		
-			doGet(request, response);
+			
+			Long codiTipoLocal = local.getCodiTipoLocal();
+			
+			response.sendRedirect("/prac2ClientWeb/sAltaAccessibilitat");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
