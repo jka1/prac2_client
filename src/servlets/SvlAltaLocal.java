@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import server.DispatcherServiceSoapBindingStub;
-import server.Local;
+import server.*;
+
+import java.lang.Exception;
 
 /**
  * Servlet implementation class SvlAltaLocal
@@ -44,11 +45,12 @@ public class SvlAltaLocal extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			DispatcherServiceSoapBindingStub disp = new DispatcherServiceSoapBindingStub();
+			DispatcherServiceLocator service = new DispatcherServiceLocator();
+			Dispatcher disp = service.getDispatcherPort(); 
 			disp.altaLocal(Long.valueOf(request.getParameter("coditipolocal")), Long.valueOf(request.getParameter("codicarrer")), request.getParameter("nomcarrer"), request.getParameter("nomvia"),
 				Long.valueOf(request.getParameter("numero")), request.getParameter("nomlocal"), request.getParameter("observacions"), "");
 		
-		doGet(request, response);
+			doGet(request, response);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
