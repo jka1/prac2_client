@@ -39,34 +39,41 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
   </a>
   <form id="frm" name="frm" method="post" action="sLlistatLocals" >
 	  <h4 class="w3-bar-item"><b>Filtre</b></h4>
+	  	  <a class="w3-bar-item">Codi Local</a>
+	  <input class="w3-hover-black" id="codiLocal" name="codiLocal" type="number" style="width:200px;margin-left:20px;" value="0"/>
 	  <a class="w3-bar-item">Nom Local</a>
 	  <input class="w3-hover-black" id="nomLocal" name="nomLocal" type="text" style="width:200px;margin-left:20px;"/>
 	  <a class="w3-bar-item">Tipus Local</a>
-		<select id="coditipolocal" name="coditipolocal" style="width:200px;height:33px;margin-left:20px;">
-			<option>-	-	-</option>
-			<option id="1">BARS I RESTAURANTS</option>
-			<option id="2">HOTELS</option>
-			<option id="3">COMERÇOS</option>
-			<option id="4">FARMÀCIES</option>
-			<option id="5">LOCALS PÚBLICS</option>
-			<option id="6">ENTITATS BANCÀRIES</option>
-		</select>
+			<select id="coditipolocal" name="coditipolocal" style="width:200px;height:33px;margin-left:20px;">
+				<option value="0">-	- -</option>
+				<option value="1">BARS I RESTAURANTS</option>
+				<option value="2">HOTELS</option>
+				<option value="3">COMERÇOS</option>
+				<option value="4">FARMÀCIES</option>
+				<option value="5">LOCALS PÚBLICS</option>
+				<option value="6">ENTITATS BANCÀRIES</option>
+			</select>
 	  <a class="w3-bar-item">Codi Carrer</a>
-	  <input class="w3-hover-black" id="codicarrer" name="codicarrer" type="text" style="width:200px;margin-left:20px;"/>
+	  <input class="w3-hover-black" id="codiCarrer" name="codiCarrer" type="number" style="width:200px;margin-left:20px;" value="0"/>
 	  <a class="w3-bar-item">Nom Carrer</a>
 	  <input class="w3-hover-black" id="nomcarrer" name="nomcarrer" type="text" style="width:200px;margin-left:20px;"/>
+	  <a class="w3-bar-item">Nom Via</a>
+	  <input class="w3-hover-black" id="nomVia" name="nomVia" type="text" style="width:200px;margin-left:20px;"/>
 	  <a class="w3-bar-item">Número</a>
-	  <input class="w3-hover-black" id="numero" name="numero" type="text" style="width:200px;margin-left:20px;"/>
+	  <input class="w3-hover-black" id="numero" name="numero" type="number" style="width:200px;margin-left:20px;" value="0"/>
 	  <a class="w3-bar-item">Nom Característica</a>
-		<select id="coditipolocal" name="coditipolocal" style="width:200px;height:33px;margin-left:20px;">
-			<option>-	-	-</option>
-			<option id="1">BARS I RESTAURANTS</option>
-			<option id="2">HOTELS</option>
-			<option id="3">COMERÇOS</option>
-			<option id="4">FARMÀCIES</option>
-			<option id="5">LOCALS PÚBLICS</option>
-			<option id="6">ENTITATS BANCÀRIES</option>
+		<select id="codicaracteristica" name="codicaracteristica" style="width:200px;height:33px;margin-left:20px;">
+			<option value="0">-	- -</option>
+			<option value="1">BARS I RESTAURANTS</option>
 		</select>
+			  <a class="w3-bar-item">Verificat</a>
+		<select id="verificat" name="verificat" style="width:200px;height:33px;margin-left:20px;">
+			<option value="" >-	-	-</option>
+			<option id="1" value="S">Si</option>
+			<option id="2" value="N">No</option>
+		</select>
+	<a class="w3-bar-item">Observacions</a>
+	  <input class="w3-hover-black" id="obsrvacions" name="obsrvacions" type="text" style="width:200px;margin-left:20px;heigth:400px;"/>
 	  <a class="w3-bar-item"></a>
 	  <a onClick="document.frm.submit();" style="margin-left:150px;padding-top:50px;"><img border="0" alt="Buscar" src="https://w7.pngwing.com/pngs/608/913/png-transparent-computer-icons-google-search-symbol-mobile-search-search-for-miscellaneous-logo-mobile-phones.png" width="90" height="50"></a>  
 </form>

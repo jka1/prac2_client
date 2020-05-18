@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -8,6 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.rpc.ServiceException;
+
+import server.Dispatcher;
+import server.DispatcherServiceLocator;
+import server.Local;
 
 /**
  * Servlet implementation class SvlLlistatLocals
@@ -33,7 +39,6 @@ public class SvlLlistatLocals extends HttpServlet {
 			ServletContext context = getServletContext();
 			context.getRequestDispatcher("/llistat_locals.jsp").forward(request, response);
 		} catch(Exception e) {
-			
 		}
 	}
 
@@ -41,8 +46,16 @@ public class SvlLlistatLocals extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		DispatcherServiceLocator service = new DispatcherServiceLocator();
+		try {
+			Dispatcher port = service.getDispatcherPort();
+			
+			Local[] locals = port.getListLocal(Long.valueOf(request.getParameter("codiLocal")), Long.valueOf(request.getParameter("coditipolocal")), Long.valueOf(request.getParameter("codiCarrer")), request.getParameter("nomcarrer"), request.getParameter("nomVia"), Long.valueOf(request.getParameter("numero")), request.getParameter("nomLocal"), request.getParameter("obsrvacions"), request.getParameter("verificat"), Long.valueOf(request.getParameter("codicaracteristica")));
+			System.out.println("arrivo al final");
+			response.sendRedirect("/prac2ClientWeb/sLlistatLocals");
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-
 }
