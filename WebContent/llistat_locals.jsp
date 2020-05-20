@@ -1,5 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
+<%@ page import ="java.util.ArrayList"%>
+<%@ page import ="java.util.List"%>
+<%@ page import ="server.Local"%>
+
 <title>Llistat Locals</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,6 +44,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     <i class="fa fa-remove"></i>
   </a>
   <form id="frm" name="frm" method="post" action="sLlistatLocals" >
+  		
 	  <h4 class="w3-bar-item"><b>Filtre</b></h4>
 	  	  <a class="w3-bar-item">Codi Local</a>
 	  <input class="w3-hover-black" id="codiLocal" name="codiLocal" type="number" style="width:200px;margin-left:20px;" value="0"/>
@@ -81,7 +88,9 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 	
 	<!-- Overlay effect when opening sidebar on small screens -->
 	<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
-	
+			    <%
+			    	Local[] locals = (Local []) session.getAttribute("locals");
+		    %>
 	<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
 	<div class="w3-main" style="margin-left:250px">
 	  <div class="w3-row w3-padding-64">
@@ -90,18 +99,37 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 	          <TABLE style="width:100%;">
 	            <TR>
 	                <TH>Nom Local</TH>
-	                <TH>Tipus</TH>
-	                <TH>City</TH>
-	                <TH>State</TH>
-	                <TH>Country</TH>
+	                <TH>Carrer Local</TH>
+	                <TH>Número Local</TH>
 	            </TR>
+	            
+	            <% 
+	            
+	            if(locals != null && locals.length != 0){	
+	            	for(int i = 0; i < locals.length; i++) {
+                	Local local = new Local();
+               	 	local = locals[i];
+
+	            
+            %>
+
+            	<tr>
+                <td style="text-align:center" onClick="detall(<%=local.getCodiLocal()%>);"><%=local.getNomLocal()%></td>
+                <td style="text-align:center"><%=local.getNomCarrer()%></td>
+                <td style="text-align:center"><%=local.getNumero()%></td>
+               </tr>
+            <%
+            }
+	            } else {
+            %>
 	            <TR>
-	                <TD> </td>
+	                <TD>Filtra per mostrar resultats</td>
 	                <TD> </TD>
 	                <TD> </TD>
-	                <TD> </TD>
-	                <TD> ></TD>
 	            </TR>
+	       <%
+            }
+            %>
 	        </TABLE>
   		</div>
   <!-- Pagination -->
@@ -117,7 +145,10 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
   </div>
 <!-- END MAIN -->
 </div>
-
+</div>
+<form id="frm2" name="frm2" method="post" action="sDetallLocal">
+	<input id="CodiLocalClicat" name="CodiLocalClicat" type="hidden"/>
+</form>
 <script>
 // Get the Sidebar
 var mySidebar = document.getElementById("mySidebar");
@@ -141,6 +172,13 @@ function w3_close() {
   mySidebar.style.display = "none";
   overlayBg.style.display = "none";
 }
+
+function detall (codiLocal){
+	alert(codiLocal);
+	document.getElementById('CodiLocalClicat').setAttribute('value', codiLocal);
+	document.frm2.submit();
+}
+
 </script>
 
 </body>

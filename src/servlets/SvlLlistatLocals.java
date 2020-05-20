@@ -3,12 +3,15 @@ package servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.Servlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.rpc.ServiceException;
 
 import server.Dispatcher;
@@ -51,8 +54,10 @@ public class SvlLlistatLocals extends HttpServlet {
 			Dispatcher port = service.getDispatcherPort();
 			
 			Local[] locals = port.getListLocal(Long.valueOf(request.getParameter("codiLocal")), Long.valueOf(request.getParameter("coditipolocal")), Long.valueOf(request.getParameter("codiCarrer")), request.getParameter("nomcarrer"), request.getParameter("nomVia"), Long.valueOf(request.getParameter("numero")), request.getParameter("nomLocal"), request.getParameter("obsrvacions"), request.getParameter("verificat"), Long.valueOf(request.getParameter("codicaracteristica")));
-			System.out.println("arrivo al final");
-			response.sendRedirect("/prac2ClientWeb/sLlistatLocals");
+			HttpSession session = request.getSession(true);
+			session.setAttribute("locals", locals); 
+			ServletContext context = getServletContext();
+			context.getRequestDispatcher("/llistat_locals.jsp").forward(request, response);
 		} catch (ServiceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
