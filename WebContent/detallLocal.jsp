@@ -1,3 +1,4 @@
+<%@page import="server.AccessibilitatLocal"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ page import ="java.util.ArrayList"%>
@@ -42,7 +43,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 <div class="w3-main" style="margin-left:250px">
 	<div class="w3-row w3-padding-64">
 		<div class="w3-twothird w3-container">
-		<form id="frm" name="frm" method="post" action="sAltaLocal" >
+		<form id="frm" name="frm" method="post" action="sVerificarLocals" >
+			<input id="CodiLocalClicat" name="CodiLocalClicat" type="hidden"/>
 			<table>
 			<%
 			    	Local[] locals = (Local []) session.getAttribute("locals");
@@ -69,18 +71,6 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     				<%}else if(locals[0].getCodiTipoLocal().toString().equals("6")){ %>
     					<td><input id="tipusLocal" name="tipusLocal" type="text" style="width:600px" maxlength="50" value="ENTITATS BANCÀRIES" readonly=""></td>
     				<%}%>
-					<td>
-					
-						<select id="coditipolocal" name="coditipolocal" style="width:600px">
-							<option value="0">-	-	-</option>
-							<option value="1">BARS I RESTAURANTS</option>
-							<option value="2">HOTELS</option>
-							<option value="3">COMERÇOS</option>
-							<option value="4">FARMÀCIES</option>
-							<option value="5">LOCALS PÚBLICS</option>
-							<option value="6">ENTITATS BANCÀRIES</option>
-						</select>
-					</td>
 				</tr>
 				<tr>
 					<td>Nom Carrer: <td>
@@ -98,21 +88,52 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 					<td style="vertical-align: top">Observacions: <td>
 					<td><textarea id="observacions" name="observacions" rows="4" style="width:600px" maxlength="300" value="<%=locals[0].getObservacions()%>" readonly=""></textarea></td>
 				</tr>
-				<tr><td>&#160;</td></tr>
+				<tr>
+					<td>&#160;</td>
+				</tr>
+				<tr>					
+					<td style="text-align: left" colspan="3">
+						<button type="button" style="width:200px;height: 40px;background-color:#4CAF50;border-top:none;border-botom:none;border-left:none;border-right:none;color:white" onclick="verificarLocal(<%=locals[0].getCodiLocal()%>, '<%=locals[0].getVerificat()%>');">
+							VERIFICAR
+						</button>
+					</td>
+				</tr>
 			</table>
 		</form>
 		</div>
 		<div class="w3-third w3-container">
 			<table>
 				<tr>
-					<td>&#160;</td>
-					<td>&#160;</td>
-					<td style="text-align: center"><h1 class="w3-text-teal">Accesibilitat</h1></td>
+					<td style="text-align: center" colspan="2"><h1 class="w3-text-teal">Llistat Accesibilitat</h1></td>
 				</tr>
-				<tr>
-					<td>Mitja: <td>
-					<td><input id="mitjaAccessibilitat" name="mitjaAccessibilitat" type="text" style="width:200px" maxlength="50" value="<%=locals[0].getNomCarrer()%>"></td>
-				</tr>
+				<%
+			    	AccessibilitatLocal[] accessibilitats = (AccessibilitatLocal []) session.getAttribute("llistaAccessibilitats");
+		    	%>
+	            <% 
+	            
+	            if(accessibilitats != null && accessibilitats.length != 0){	
+	            	for(int i = 0; i < accessibilitats.length; i++) {
+	            	AccessibilitatLocal accessibilitat = new AccessibilitatLocal();
+                	accessibilitat = accessibilitats[i];
+
+	            
+            %>
+
+            	<tr>
+                <td style="text-align:left"><%=accessibilitat.getNomCaracteristicaCa()%>&#160;&#160;&#160;&#160;</td>
+                <td><input type="checkbox" checked="<%=accessibilitat.getValor()%>"/></td>
+               </tr>
+            <%
+            }
+	            } else {
+            %>
+	            <TR>
+	                <TD>No s'han trobat accessibilitats</td>
+	                <TD> </TD>
+	            </TR>
+	       <%
+            }
+            %>
 			</table>
 	    </div>
 	</div>
@@ -141,6 +162,18 @@ function w3_open() {
 function w3_close() {
   mySidebar.style.display = "none";
   overlayBg.style.display = "none";
+}
+
+function verificarLocal(codiLocal, verificat){
+	if(verificat == 'S'){
+		alert('Aquest local ja ha estat verificat.')
+	} else {
+		var r = confirm("Segur que vols validar aquest local?");
+		if (r == true) {
+			document.getElementById('CodiLocalClicat').setAttribute('value', codiLocal);
+			document.frm.submit();
+		}
+	}
 }
 </script>
 

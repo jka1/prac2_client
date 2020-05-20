@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import server.Dispatcher;
 import server.DispatcherServiceLocator;
 import server.Local;
+import server.AccessibilitatLocal;;
 
 /**
  * Servlet implementation class SvlDetallLocal
@@ -51,8 +52,10 @@ public class SvlDetallLocal extends HttpServlet {
 			Dispatcher port = service.getDispatcherPort();
 			
 			Local[] locals = port.getListLocal(Long.valueOf(codiLocal), 0L, 0L, "", "", 0L, "", "", "", 0L);
+			AccessibilitatLocal [] llistaAccessibilitats = port.getListAccessibilitatLocal(0L, Long.valueOf(codiLocal), 0L, "");
 			HttpSession session = request.getSession(true);
 			session.setAttribute("locals", locals); 
+			session.setAttribute("llistaAccessibilitats", llistaAccessibilitats); 
 			ServletContext context = getServletContext();
 			context.getRequestDispatcher("/detallLocal.jsp").forward(request, response);
 		} catch(Exception e) {

@@ -174,7 +174,6 @@ function w3_close() {
 }
 
 function detall (codiLocal){
-	alert(codiLocal);
 	document.getElementById('CodiLocalClicat').setAttribute('value', codiLocal);
 	document.frm2.submit();
 }
