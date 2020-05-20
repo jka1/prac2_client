@@ -50,9 +50,19 @@ public class SvlAltaLocal extends HttpServlet {
 			Local local = disp.altaLocal(Long.valueOf(request.getParameter("coditipolocal")), Long.valueOf(request.getParameter("codicarrer")), request.getParameter("nomcarrer"), request.getParameter("nomvia"),
 				Long.valueOf(request.getParameter("numero")), request.getParameter("nomlocal"), request.getParameter("observacions"), "");
 			
+			Long codiLocal = local.getCodiLocal();
 			Long codiTipoLocal = local.getCodiTipoLocal();
 			
-			response.sendRedirect("/prac2ClientWeb/sAltaAccessibilitat");
+			System.out.println(codiLocal);
+			System.out.println(codiTipoLocal);
+			
+			request.setAttribute("codiLocal", codiLocal);
+			request.setAttribute("codiTipoLocal", codiTipoLocal);
+			
+			ServletContext context = getServletContext();
+			context.getRequestDispatcher("/sAltaAccessibilitat").forward(request, response);
+			
+			//response.sendRedirect("/prac2ClientWeb/sAltaAccessibilitat?codilocal=" + codiTipoLocal);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
