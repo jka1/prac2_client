@@ -31,8 +31,6 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
     <a href="sLlistatLocals" class="w3-bar-item w3-button w3-hide-small w3-hover-white">BUSCAR LOCALS</a>
     <a href="sAltaLocal" class="w3-bar-item w3-button w3-theme-l1">AFEGIR LOCALS</a>
-    <a href="sVerificarLocals" class="w3-bar-item w3-button w3-hide-small w3-hover-white">VERIFICAR LOCALS</a>
-    <a href="sEliminarLocals" class="w3-bar-item w3-button w3-hide-small w3-hover-white">ELIMINAR LOCALS</a>
   </div>
 </div>
 
@@ -97,6 +95,11 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 							VERIFICAR
 						</button>
 					</td>
+					<td style="text-align: left" colspan="3">
+						<button type="button" style="width:200px;height: 40px;background-color:#FF0000;border-top:none;border-botom:none;border-left:none;border-right:none;color:white" onclick="eliminarLocal(<%=locals[0].getCodiLocal()%>);">
+							ELIMINAR
+						</button>
+					</td>
 				</tr>
 			</table>
 		</form>
@@ -139,6 +142,9 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 	</div>
 <!-- END MAIN -->
 </div>
+<form id="frm2" name="frm2" method="post" action="sEliminarLocals">
+	<input id="CodiLocalClicatEliminar" name="CodiLocalClicatEliminar" type="hidden"/>
+</form>
 <script>
 
 // Get the Sidebar
@@ -175,6 +181,15 @@ function verificarLocal(codiLocal, verificat){
 		}
 	}
 }
+
+function eliminarLocal(codiLocal){
+	var r = confirm("Segur que vols eliminar aquest local?");
+	if (r == true) {
+		document.getElementById('CodiLocalClicatEliminar').setAttribute('value', codiLocal);
+		document.frm2.submit();
+	}
+}
+
 </script>
 
 </body>

@@ -37,11 +37,11 @@ public class SvlLlistatLocals extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		try {
 			ServletContext context = getServletContext();
 			context.getRequestDispatcher("/llistat_locals.jsp").forward(request, response);
 		} catch(Exception e) {
+			
 		}
 	}
 
