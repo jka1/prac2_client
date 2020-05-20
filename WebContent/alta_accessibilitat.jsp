@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <title>Full accessibilitat local</title>
@@ -19,7 +21,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 </style>
 <script>
 	function init() {
-		var tipoLocal = document.getElementById("tipoLocal").value;
+		var tipoLocal = document.getElementById("codiTipoLocal").value;
 		if(tipoLocal == "1") {
 			document.getElementById("frm1").style.display = "";
 		} else if(tipoLocal == "2") {
@@ -34,8 +36,25 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 			document.getElementById("frm6").style.display = "";
 		}			
 	}
+
+	function altaAccessibilitat() {
+		var tipoLocal = document.getElementById("codiTipoLocal").value;
+		if(tipoLocal == "1") {
+			document.frm1.submit();
+		} else if(tipoLocal == "2") {
+			document.frm2.submit();
+		} else if(tipoLocal == "3") {
+			document.frm3.submit();
+		} else if(tipoLocal == "4") {
+			document.frm4.submit();
+		} else if(tipoLocal == "5") {
+			document.frm5.submit();
+		} else if(tipoLocal == "6") {
+			document.frm6.submit();
+		}	
+	}
 </script>
-<body onLoad="init();">
+<body onload="init();">
 <!-- Navbar -->
 <div class="w3-top">
   <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
@@ -53,18 +72,20 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
 <div class="w3-main" style="margin-left:250px">
 	<div class="w3-row w3-padding-64">
-	
-		<input type="hidden" id="nomLocal" name="nomLocal" value=""/>
-		<input type="hidden" id="idLocal" name="idLocal" value=""/>
-		<input type="hidden" id="tipoLocal" name="tipoLocal" value=""/>
+		
+		<input type="hidden" id="codiLocal" name="codiLocal" value="<%= request.getAttribute("codiLocal") %>"/>
+		<input type="hidden" id="codiTipoLocal" name="codiTipoLocal" value="<%= request.getAttribute("codiTipoLocal") %>"/>
+		
 		<!-- BARS I RESTAURANTS -->
-		<form id="frm1" name="frm1" method="post" action="sAltaAcessibilitat" style="display: none">
+		<form id="frm1" name="frm1" method="post" action="sAltaAccessibilitat" style="display: none">
+			<input type="hidden" id="codiLocal1" name="codiLocal1" value="<%= request.getAttribute("codiLocal") %>"/>
+			<input type="hidden" id="codiTipoLocal1" name="codiTipoLocal1" value="<%= request.getAttribute("codiTipoLocal") %>"/>
 			<table>
 				<tr>
-					<td style="text-align: center"><h1 class="w3-text-teal">FULLA ACCESSIBILITAT "nomlocal"</h1></td>
+					<td style="text-align: center"><h1 class="w3-text-teal">FULLA ACCESSIBILITAT <%= request.getAttribute("nomLocal") %></h1></td>
 				</tr>
 				<tr>
-					<td>ESCALA O ESGLA√ì D'ENTRADA (M√âS DE 5 CM) <td>
+					<td>ESCALA O ESGLA” D'ENTRADA (M…S DE 5 CM) <td>
 					<td><input id=1 name="1" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -80,23 +101,23 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 					<td><input id="4" name="4" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>BONA SENYALITZACI√ì DE LES MESURES DE SEGURETAT <td>
+					<td>BONA SENYALITZACI” DE LES MESURES DE SEGURETAT <td>
 					<td><input id="6" name="6" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>CARTA BRAILLE, AMPLIACI√ì DE LA LLETRA, RELLEU <td>
+					<td>CARTA BRAILLE, AMPLIACI” DE LA LLETRA, RELLEU <td>
 					<td><input id="7" name="7" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>CARTA EN LLENGUATGE SIMPLE, SIMBOLOGIA, ESCRITA EN DUES LLENG√úES <td>
+					<td>CARTA EN LLENGUATGE SIMPLE, SIMBOLOGIA, ESCRITA EN DUES LLENG‹ES <td>
 					<td><input id="8" name="8" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>INFORMACI√ì AL CLIENT EN PANELLS, PISSARRES DE FORMA VISIBLE <td>
+					<td>INFORMACI” AL CLIENT EN PANELLS, PISSARRES DE FORMA VISIBLE <td>
 					<td><input id="9" name="9" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>DESNIVELLS O OBSTACLES A LA VIA P√öBLICA <td>
+					<td>DESNIVELLS O OBSTACLES A LA VIA P⁄BLICA <td>
 					<td><input id="10" name="10" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -104,11 +125,11 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 					<td><input id="11" name="11" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>ZONA D'APARCAMENT PER A PERSONES AMB MOBILITAT REDU√çDA PR√ìXIMA <td>
+					<td>ZONA D'APARCAMENT PER A PERSONES AMB MOBILITAT REDUÕDA PR”XIMA <td>
 					<td><input id="12" name="12" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>EL MOBILIARI √âS ESTABLE (ELEMENTS DECORATIUS QUE PODEN SER OBSTACLES) <td>
+					<td>EL MOBILIARI …S ESTABLE (ELEMENTS DECORATIUS QUE PODEN SER OBSTACLES) <td>
 					<td><input id="16" name="16" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -120,15 +141,15 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 					<td><input id="18" name="18" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>MOBILIARI QUE PERMET CONTACTE VISUAL DIRECTE (TAULES RODONES, VISUALITZACI√ì DE L'ENTRADA) <td>
+					<td>MOBILIARI QUE PERMET CONTACTE VISUAL DIRECTE (TAULES RODONES, VISUALITZACI” DE L'ENTRADA) <td>
 					<td><input id="19" name="19" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>EXIST√âNCIA DE BARANA A LA RAMPA <td>
+					<td>EXIST…NCIA DE BARANA A LA RAMPA <td>
 					<td><input id="20" name="20" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>ATENCI√ì DEL SERVEI A LES TAULES <td>
+					<td>ATENCI” DEL SERVEI A LES TAULES <td>
 					<td><select id="5" name="5" style="width:50px">
 							<option value="0">-	- -</option>
 							<option value="1">1</option>
@@ -150,7 +171,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 						</select><td>
 				</tr>
 				<tr>
-					<td>BONA IL¬∑LUMINACI√ì DE L'ESTABLIMENT <td>
+					<td>BONA IL∑LUMINACI” DE L'ESTABLIMENT <td>
 					<td><select id="14" name="14" style="width:50px">
 							<option value="0">-	- -</option>
 							<option value="1">1</option>
@@ -161,7 +182,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 						</select><td>
 				</tr>
 				<tr>
-					<td>CAMP DE VISI√ì DE L'ESPAI SENSE OBSTACLES <td>
+					<td>CAMP DE VISI” DE L'ESPAI SENSE OBSTACLES <td>
 					<td><select id="15" name="15" style="width:50px">
 							<option value="0">-	- -</option>
 							<option value="1">1</option>
@@ -174,7 +195,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 				<tr><td>&#160;</td></tr>
 				<tr>
 					<td style="text-align: center">
-						<button type="button" style="width:200px;height: 40px;background-color:#4CAF50;border-top:none;border-botom:none;border-left:none;border-right:none;color:white" onclick="altaLocal();">
+						<button type="button" style="width:200px;height: 40px;background-color:#4CAF50;border-top:none;border-botom:none;border-left:none;border-right:none;color:white" onclick="altaAccessibilitat();">
 							FINALITZA
 						</button>
 					</td>
@@ -182,25 +203,27 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 			</table>
 		</form>
 		<!-- HOTELS -->
-		<form id="frm2" name="frm2" method="post" action="sAltaAcessibilitat" style="display: none">
+		<form id="frm2" name="frm2" method="post" action="sAltaAccessibilitat" style="display: none">
+			<input type="hidden" id="codiLocal1" name="codiLocal1" value="<%= request.getAttribute("codiLocal") %>"/>
+			<input type="hidden" id="codiTipoLocal1" name="codiTipoLocal1" value="<%= request.getAttribute("codiTipoLocal") %>"/>
 			<table>
 				<tr>
-					<td style="text-align: center"><h1 class="w3-text-teal">FULLA ACCESSIBILITAT "nomlocal"</h1></td>
+					<td style="text-align: center"><h1 class="w3-text-teal">FULLA ACCESSIBILITAT <%= request.getAttribute("nomLocal") %></h1></td>
 				</tr>
 				<tr>
-					<td>ESCALA O ESGLA√ì D'ENTRADA (M√âS DE 5 CM) <td>
-					<td><input id=1 name="1" type="checkbox"/></td>
+					<td>ESCALA O ESGLA” D'ENTRADA (M…S DE 5 CM) <td>
+					<td><input id=1 name="1" type="checkbox" value="1"/></td>
 				</tr>
 				<tr>
 					<td>LA PORTA PERMET L'ENTRADA DE CADIRA DE RODES <td>
-					<td><input id=2 name="2" type="checkbox"/></td>
+					<td><input id=2 name="2" type="checkbox" value="2"/></td>
 				</tr>
 				<tr>
 					<td>RAMPA O ELEMENTS D'ACCESSIBILITAT A L'ENTRADA (PLATAFORMA ELEVADORA) <td>
-					<td><input id="4" name="4" type="checkbox"/></td>
+					<td><input id="4" name="4" type="checkbox" value="4"/></td>
 				</tr>
 				<tr>
-					<td>DESNIVELLS O OBSTACLES A LA VIA P√öBLICA <td>
+					<td>DESNIVELLS O OBSTACLES A LA VIA P⁄BLICA <td>
 					<td><input id="10" name="10" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -208,7 +231,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 					<td><input id="11" name="11" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>ZONA D'APARCAMENT PER A PERSONES AMB MOBILITAT REDU√çDA PR√ìXIMA <td>
+					<td>ZONA D'APARCAMENT PER A PERSONES AMB MOBILITAT REDUÕDA PR”XIMA <td>
 					<td><input id="12" name="12" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -216,39 +239,39 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 					<td><input id="17" name="17" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>EXIST√âNCIA DE BARANA A LA RAMPA <td>
+					<td>EXIST…NCIA DE BARANA A LA RAMPA <td>
 					<td><input id="20" name="20" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>ACCESS A NIVELL O AMB UN ESGLA√ì INFERIOR A 2 CM <td>
+					<td>ACCESS A NIVELL O AMB UN ESGLA” INFERIOR A 2 CM <td>
 					<td><input id="21" name="21" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>PORTA SUFICIENTMENT IL¬∑LUMINADA <td>
+					<td>PORTA SUFICIENTMENT IL∑LUMINADA <td>
 					<td><input id="22" name="22" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>AJUTS T√àCNICS PER A PERSONES AMB DISCAPACITAT AUDITIVA <td>
+					<td>AJUTS T»CNICS PER A PERSONES AMB DISCAPACITAT AUDITIVA <td>
 					<td><input id="23" name="23" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>EXISTEIX PL√ÄNOL DEL LLOC ON ETS, EN BRAILLE O RELLEU <td>
+					<td>EXISTEIX PL¿NOL DEL LLOC ON ETS, EN BRAILLE O RELLEU <td>
 					<td><input id="24" name="24" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>INFORMACI√ì DEL RECINTE PER A PERSONES AMB DISCAPACITAT VISUAL <td>
+					<td>INFORMACI” DEL RECINTE PER A PERSONES AMB DISCAPACITAT VISUAL <td>
 					<td><input id="25" name="25" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>LA IL¬∑LUMINACI√ì NATURAL/ARTIFICIAL GENERAL DEL RECINTE √âS ADEQUADA<td>
+					<td>LA IL∑LUMINACI” NATURAL/ARTIFICIAL GENERAL DEL RECINTE …S ADEQUADA<td>
 					<td><input id="26" name="26" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>TENEN PERSONAL FORMAT PER A L'ATENCI√ì DE PERSONES AMB DISCAPACITAT <td>
+					<td>TENEN PERSONAL FORMAT PER A L'ATENCI” DE PERSONES AMB DISCAPACITAT <td>
 					<td><input id="27" name="27" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>PARADA DE TRANSPORT P√öBLIC PROPERA <td>
+					<td>PARADA DE TRANSPORT P⁄BLIC PROPERA <td>
 					<td><input id="28" name="28" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -260,7 +283,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 					<td><input id="31" name="31" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>DISPOSEN D'INSTAL¬∑LACI√ì DOMESTICA <td>
+					<td>DISPOSEN D'INSTAL∑LACI” DOMESTICA <td>
 					<td><input id="32" name="32" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -268,7 +291,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 					<td><input id="33" name="33" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>HI HA M√âS DE DOS HABITACIONS ADAPTADES <td>
+					<td>HI HA M…S DE DOS HABITACIONS ADAPTADES <td>
 					<td><input id="34" name="34" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -276,7 +299,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 					<td><input id="35" name="35" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>LES DIMENSIONS DEL BANY I LES PORTES S√ìN ADEQUADES (AJUDES T√âCNIQUES, BANYERA AMB SUPORT, DUTXA A NIVELL, AL√áADA MIRALL) <td>
+					<td>LES DIMENSIONS DEL BANY I LES PORTES S”N ADEQUADES (AJUDES T…CNIQUES, BANYERA AMB SUPORT, DUTXA A NIVELL, AL«ADA MIRALL) <td>
 					<td><input id="36" name="36" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -284,11 +307,11 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 					<td><input id="37" name="37" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>ASCENSOR ACCESSIBLE EN DIMENSIONS I AL√áADA DELS POLSADORS <td>
+					<td>ASCENSOR ACCESSIBLE EN DIMENSIONS I AL«ADA DELS POLSADORS <td>
 					<td><input id="38" name="38" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>DISPOSA DE FACILITATS O ADAPTACIONS PER A PERSONES AMB DISCAPACITAT VISUAL (POLSADORS EN BRAILLE, RELLEU O INFORMACI√ì AC√öSTICA, ...) <td>
+					<td>DISPOSA DE FACILITATS O ADAPTACIONS PER A PERSONES AMB DISCAPACITAT VISUAL (POLSADORS EN BRAILLE, RELLEU O INFORMACI” AC⁄STICA, ...) <td>
 					<td><input id="39" name="39" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -308,11 +331,11 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 					<td><input id="43" name="43" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>LES PORTES TENEN ELS PAR√ÄMETRES ADEQUATS (AMPLADES, TIRADORS A L'AL√áADA ADEQUADA, PORTES DE VIDRE SENYALITZADES) <td>
+					<td>LES PORTES TENEN ELS PAR¿METRES ADEQUATS (AMPLADES, TIRADORS A L'AL«ADA ADEQUADA, PORTES DE VIDRE SENYALITZADES) <td>
 					<td><input id="44" name="44" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>MESURES D'EVACUACI√ì PER A PERSONES AMB DISCAPACITAT <td>
+					<td>MESURES D'EVACUACI” PER A PERSONES AMB DISCAPACITAT <td>
 					<td><input id="45" name="45" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -331,8 +354,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 						</select><td>
 				</tr>
 				<tr>
-					<td>ACCESSIBILITAT DEL LLIT (AL√áADA) <td>
-					<td><select id="13" name="13" style="width:50px">
+					<td>ACCESSIBILITAT DEL LLIT (AL«ADA) <td>
+					<td><select id="29" name="29" style="width:50px">
 							<option value="0">-	- -</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -351,22 +374,24 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 				</tr>
 			</table>
 		</form>
-		<!-- COMER√áOS -->
-		<form id="frm3" name="frm3" method="post" action="sAltaAcessibilitat" style="display: none">
+		<!-- COMER«OS -->
+		<form id="frm3" name="frm3" method="post" action="sAltaAccessibilitat" style="display: none">
+			<input type="hidden" id="codiLocal1" name="codiLocal1" value="<%= request.getAttribute("codiLocal") %>"/>
+			<input type="hidden" id="codiTipoLocal1" name="codiTipoLocal1" value="<%= request.getAttribute("codiTipoLocal") %>"/>
 			<table>
 				<tr>
-					<td style="text-align: center"><h1 class="w3-text-teal">FULLA ACCESSIBILITAT "nomlocal"</h1></td>
+					<td style="text-align: center"><h1 class="w3-text-teal">FULLA ACCESSIBILITAT <%= request.getAttribute("nomLocal") %></h1></td>
 				</tr>
 				<tr>
-					<td>ESCALA O ESGLA√ì D'ENTRADA (M√âS DE 5 CM) <td>
-					<td><input id=1 name="1" type="checkbox"/></td>
+					<td>ESCALA O ESGLA” D'ENTRADA (M…S DE 5 CM) <td>
+					<td><input id=1 name="1" type="checkbox" value="1"/></td>
 				</tr>
 				<tr>
 					<td>LA PORTA PERMET L'ENTRADA DE CADIRA DE RODES <td>
-					<td><input id=2 name="2" type="checkbox"/></td>
+					<td><input id=2 name="2" type="checkbox" value="2"/></td>
 				</tr>
 				<tr>
-					<td>DESNIVELLS O OBSTACLES A LA VIA P√öBLICA <td>
+					<td>DESNIVELLS O OBSTACLES A LA VIA P⁄BLICA <td>
 					<td><input id="10" name="10" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -374,11 +399,11 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 					<td><input id="11" name="11" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>ZONA D'APARCAMENT PER A PERSONES AMB MOBILITAT REDU√çDA PR√ìXIMA <td>
+					<td>ZONA D'APARCAMENT PER A PERSONES AMB MOBILITAT REDUÕDA PR”XIMA <td>
 					<td><input id="12" name="12" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>EL MOBILIARI √âS ESTABLE (ELEMENTS DECORATIUS QUE PODEN SER OBSTACLES) <td>
+					<td>EL MOBILIARI …S ESTABLE (ELEMENTS DECORATIUS QUE PODEN SER OBSTACLES) <td>
 					<td><input id="16" name="16" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -390,31 +415,31 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 					<td><input id="18" name="18" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>EXIST√âNCIA DE BARANA A LA RAMPA <td>
+					<td>EXIST…NCIA DE BARANA A LA RAMPA <td>
 					<td><input id="20" name="20" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>ACCESS A NIVELL O AMB UN ESGLA√ì INFERIOR A 2 CM <td>
+					<td>ACCESS A NIVELL O AMB UN ESGLA” INFERIOR A 2 CM <td>
 					<td><input id="21" name="21" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>PORTA SUFICIENTMENT IL¬∑LUMINADA <td>
+					<td>PORTA SUFICIENTMENT IL∑LUMINADA <td>
 					<td><input id="22" name="22" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>PARADA DE TRANSPORT P√öBLIC PROPERA <td>
+					<td>PARADA DE TRANSPORT P⁄BLIC PROPERA <td>
 					<td><input id="28" name="28" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>PORTES AUTOM√ÄTIQUES <td>
+					<td>PORTES AUTOM¿TIQUES <td>
 					<td><input id="47" name="47" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>RAMPA AMB ELS PAR√ÄMETRES ADEQUATS (AMPLADA, PENDENT, BARANES, REPLANS, INTERMEDIS) <td>
+					<td>RAMPA AMB ELS PAR¿METRES ADEQUATS (AMPLADA, PENDENT, BARANES, REPLANS, INTERMEDIS) <td>
 					<td><input id="48" name="48" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>AL√áADA PRESTATGE MENYS DE 1,4 METRES <td>
+					<td>AL«ADA PRESTATGE MENYS DE 1,4 METRES <td>
 					<td><input id="49" name="49" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -445,7 +470,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 						</select><td>
 				</tr>
 				<tr>
-					<td>BONA IL¬∑LUMINACI√ì DE L'ESTABLIMENT <td>
+					<td>BONA IL∑LUMINACI” DE L'ESTABLIMENT <td>
 					<td><select id="14" name="14" style="width:50px">
 							<option value="0">-	- -</option>
 							<option value="1">1</option>
@@ -456,7 +481,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 						</select><td>
 				</tr>
 				<tr>
-					<td>CAMP DE VISI√ì DE L'ESPAI SENSE OBSTACLES <td>
+					<td>CAMP DE VISI” DE L'ESPAI SENSE OBSTACLES <td>
 					<td><select id="15" name="15" style="width:50px">
 							<option value="0">-	- -</option>
 							<option value="1">1</option>
@@ -476,30 +501,32 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 				</tr>
 			</table>
 		</form>
-		<!-- FARM√ÄCIES -->
-		<form id="frm4" name="frm4" method="post" action="sAltaAcessibilitat" style="display: none">
+		<!-- FARM¿CIES -->
+		<form id="frm4" name="frm4" method="post" action="sAltaAccessibilitat" style="display: none">
+			<input type="hidden" id="codiLocal1" name="codiLocal1" value="<%= request.getAttribute("codiLocal") %>"/>
+			<input type="hidden" id="codiTipoLocal1" name="codiTipoLocal1" value="<%= request.getAttribute("codiTipoLocal") %>"/>
 			<table>
 				<tr>
-					<td style="text-align: center"><h1 class="w3-text-teal">FULLA ACCESSIBILITAT "nomlocal"</h1></td>
+					<td style="text-align: center"><h1 class="w3-text-teal">FULLA ACCESSIBILITAT <%= request.getAttribute("nomLocal") %></h1></td>
 				</tr>
 				<tr>
 					<td>OBSTACLES VORERA <td>
 					<td><input id="11" name="11" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>ZONA D'APARCAMENT PER A PERSONES AMB MOBILITAT REDU√çDA PR√ìXIMA <td>
+					<td>ZONA D'APARCAMENT PER A PERSONES AMB MOBILITAT REDUÕDA PR”XIMA <td>
 					<td><input id="12" name="12" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>TENEN PERSONAL FORMAT PER A L'ATENCI√ì DE PERSONES AMB DISCAPACITAT <td>
+					<td>TENEN PERSONAL FORMAT PER A L'ATENCI” DE PERSONES AMB DISCAPACITAT <td>
 					<td><input id="27" name="27" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>PARADA DE TRANSPORT P√öBLIC PROPERA <td>
+					<td>PARADA DE TRANSPORT P⁄BLIC PROPERA <td>
 					<td><input id="28" name="28" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>DISPOSA DE FACILITATS O ADAPTACIONS PER A PERSONES AMB DISCAPACITAT VISUAL (POLSADORS EN BRAILLE, RELLEU O INFORMACI√ì AC√öSTICA, ...) <td>
+					<td>DISPOSA DE FACILITATS O ADAPTACIONS PER A PERSONES AMB DISCAPACITAT VISUAL (POLSADORS EN BRAILLE, RELLEU O INFORMACI” AC⁄STICA, ...) <td>
 					<td><input id="39" name="39" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -511,11 +538,11 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 					<td><input id="41" name="41" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>PORTES AUTOM√ÄTIQUES <td>
+					<td>PORTES AUTOM¿TIQUES <td>
 					<td><input id="47" name="47" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>RAMPA AMB ELS PAR√ÄMETRES ADEQUATS (AMPLADA, PENDENT, BARANES, REPLANS, INTERMEDIS) <td>
+					<td>RAMPA AMB ELS PAR¿METRES ADEQUATS (AMPLADA, PENDENT, BARANES, REPLANS, INTERMEDIS) <td>
 					<td><input id="48" name="48" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -527,11 +554,11 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 					<td><input id="55" name="55" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>SENYALITZACI√ì EXTERIOR DE L'EDIFICI COM A FARM√ÄCIA <td>
+					<td>SENYALITZACI” EXTERIOR DE L'EDIFICI COM A FARM¿CIA <td>
 					<td><input id="56" name="56" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>EL TAULELL PERMET L'APROXIMACI√ì DE LA PERSONA EN CADIRA DE RODES <td>
+					<td>EL TAULELL PERMET L'APROXIMACI” DE LA PERSONA EN CADIRA DE RODES <td>
 					<td><input id="57" name="57" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -543,11 +570,11 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 					<td><input id="59" name="59" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>"L'AL√áADA DEL SISTEMA D'ALARMA/FINESTRETA DE LES FARM√ÄCIES DE GU√ÄRDIA PERMET A LA PERSONA AMB MOBILITAT REDU√èDA ACCEDIR-HI <td>
+					<td>"L'AL«ADA DEL SISTEMA D'ALARMA/FINESTRETA DE LES FARM¿CIES DE GU¿RDIA PERMET A LA PERSONA AMB MOBILITAT REDUœDA ACCEDIR-HI <td>
 					<td><input id="60" name="60" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>RETOLACIONS DELS PRODUCTES, PREUS I INFORMACIONS D'HORARIS I FARM√ÄCIES DE GU√ÄRDIA AMB CRITERIS D'ACCESSIBILITAT <td>
+					<td>RETOLACIONS DELS PRODUCTES, PREUS I INFORMACIONS D'HORARIS I FARM¿CIES DE GU¿RDIA AMB CRITERIS D'ACCESSIBILITAT <td>
 					<td><input id="61" name="61" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -562,7 +589,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 						</select><td>
 				</tr>
 				<tr>
-					<td>BONA IL¬∑LUMINACI√ì DE L'ESTABLIMENT <td>
+					<td>BONA IL∑LUMINACI” DE L'ESTABLIMENT <td>
 					<td><select id="14" name="14" style="width:50px">
 							<option value="0">-	- -</option>
 							<option value="1">1</option>
@@ -582,26 +609,28 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 				</tr>
 			</table>
 		</form>
-		<!-- LOCAL P√öBLIC -->
-		<form id="frm5" name="frm5" method="post" action="sAltaAcessibilitat" style="display: none">
+		<!-- LOCAL P⁄BLIC -->
+		<form id="frm5" name="frm5" method="post" action="sAltaAccessibilitat" style="display: none">
+			<input type="hidden" id="codiLocal1" name="codiLocal1" value="<%= request.getAttribute("codiLocal") %>"/>
+			<input type="hidden" id="codiTipoLocal1" name="codiTipoLocal1" value="<%= request.getAttribute("codiTipoLocal") %>"/>
 			<table>
 				<tr>
-					<td style="text-align: center"><h1 class="w3-text-teal">FULLA ACCESSIBILITAT "nomlocal"</h1></td>
+					<td style="text-align: center"><h1 class="w3-text-teal">FULLA ACCESSIBILITAT <%= request.getAttribute("nomLocal") %></h1></td>
 				</tr>
 				<tr>
-					<td>ESCALA O ESGLA√ì D'ENTRADA (M√âS DE 5 CM) <td>
-					<td><input id=1 name="1" type="checkbox"/></td>
+					<td>ESCALA O ESGLA” D'ENTRADA (M…S DE 5 CM) <td>
+					<td><input id=1 name="1" type="checkbox" value="1"/></td>
 				</tr>
 				<tr>
 					<td>LA PORTA PERMET L'ENTRADA DE CADIRA DE RODES <td>
-					<td><input id=2 name="2" type="checkbox"/></td>
+					<td><input id=2 name="2" type="checkbox" value="2"/></td>
 				</tr>
 				<tr>
 					<td>RAMPA O ELEMENTS D'ACCESSIBILITAT A L'ENTRADA (PLATAFORMA ELEVADORA) <td>
-					<td><input id="4" name="4" type="checkbox"/></td>
+					<td><input id="4" name="4" type="checkbox" value="4"/></td>
 				</tr>
 				<tr>
-					<td>ZONA D'APARCAMENT PER A PERSONES AMB MOBILITAT REDU√çDA PR√ìXIMA <td>
+					<td>ZONA D'APARCAMENT PER A PERSONES AMB MOBILITAT REDUÕDA PR”XIMA <td>
 					<td><input id="12" name="12" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -613,15 +642,15 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 					<td><input id="18" name="18" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>EXIST√âNCIA DE BARANA A LA RAMPA <td>
+					<td>EXIST…NCIA DE BARANA A LA RAMPA <td>
 					<td><input id="20" name="20" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>ASCENSOR ACCESSIBLE EN DIMENSIONS I AL√áADA DELS POLSADORS <td>
+					<td>ASCENSOR ACCESSIBLE EN DIMENSIONS I AL«ADA DELS POLSADORS <td>
 					<td><input id="38" name="38" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>PORTES AUTOM√ÄTIQUES <td>
+					<td>PORTES AUTOM¿TIQUES <td>
 					<td><input id="47" name="47" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -629,7 +658,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 					<td><input id="52" name="52" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>ACC√âS A LA GRADERIA <td>
+					<td>ACC…S A LA GRADERIA <td>
 					<td><input id="62" name="62" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -641,7 +670,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 					<td><input id="64" name="64" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>BONA IL¬∑LUMINACI√ì DE L'ESTABLIMENT <td>
+					<td>BONA IL∑LUMINACI” DE L'ESTABLIMENT <td>
 					<td><select id="14" name="14" style="width:50px">
 							<option value="0">-	- -</option>
 							<option value="1">1</option>
@@ -661,22 +690,24 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 				</tr>
 			</table>
 		</form>
-		<!-- ENTITAT BANC√ÄRIA -->
-		<form id="frm6" name="frm6" method="post" action="sAltaAcessibilitat" style="display: none">
+		<!-- ENTITAT BANC¿RIA -->
+		<form id="frm6" name="frm6" method="post" action="sAltaAccessibilitat" style="display: none">
+			<input type="hidden" id="codiLocal1" name="codiLocal1" value="<%= request.getAttribute("codiLocal") %>"/>
+			<input type="hidden" id="codiTipoLocal1" name="codiTipoLocal1" value="<%= request.getAttribute("codiTipoLocal") %>"/>
 			<table>
 				<tr>
-					<td style="text-align: center"><h1 class="w3-text-teal">FULLA ACCESSIBILITAT "nomlocal"</h1></td>
+					<td style="text-align: center"><h1 class="w3-text-teal">FULLA ACCESSIBILITAT <%= request.getAttribute("nomLocal") %></h1></td>
 				</tr>
 				<tr>
-					<td>ESCALA O ESGLA√ì D'ENTRADA (M√âS DE 5 CM) <td>
-					<td><input id=1 name="1" type="checkbox"/></td>
+					<td>ESCALA O ESGLA” D'ENTRADA (M…S DE 5 CM) <td>
+					<td><input id=1 name="1" type="checkbox" value="1"/></td>
 				</tr>
 				<tr>
 					<td>LA PORTA PERMET L'ENTRADA DE CADIRA DE RODES <td>
-					<td><input id=2 name="2" type="checkbox"/></td>
+					<td><input id=2 name="2" type="checkbox" value="2"/></td>
 				</tr>
 				<tr>
-					<td>DESNIVELLS O OBSTACLES A LA VIA P√öBLICA <td>
+					<td>DESNIVELLS O OBSTACLES A LA VIA P⁄BLICA <td>
 					<td><input id="10" name="10" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -684,7 +715,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 					<td><input id="11" name="11" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>ZONA D'APARCAMENT PER A PERSONES AMB MOBILITAT REDU√çDA PR√ìXIMA <td>
+					<td>ZONA D'APARCAMENT PER A PERSONES AMB MOBILITAT REDUÕDA PR”XIMA <td>
 					<td><input id="12" name="12" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -692,39 +723,39 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 					<td><input id="17" name="17" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>EXIST√âNCIA DE BARANA A LA RAMPA <td>
+					<td>EXIST…NCIA DE BARANA A LA RAMPA <td>
 					<td><input id="20" name="20" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>ACCESS A NIVELL O AMB UN ESGLA√ì INFERIOR A 2 CM <td>
+					<td>ACCESS A NIVELL O AMB UN ESGLA” INFERIOR A 2 CM <td>
 					<td><input id="21" name="21" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>PORTA SUFICIENTMENT IL¬∑LUMINADA <td>
+					<td>PORTA SUFICIENTMENT IL∑LUMINADA <td>
 					<td><input id="22" name="22" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>TENEN PERSONAL FORMAT PER A L'ATENCI√ì DE PERSONES AMB DISCAPACITAT <td>
+					<td>TENEN PERSONAL FORMAT PER A L'ATENCI” DE PERSONES AMB DISCAPACITAT <td>
 					<td><input id="27" name="27" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>PARADA DE TRANSPORT P√öBLIC PROPERA <td>
+					<td>PARADA DE TRANSPORT P⁄BLIC PROPERA <td>
 					<td><input id="28" name="28" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>RAMPA AMB ELS PAR√ÄMETRES ADEQUATS (AMPLADA, PENDENT, BARANES, REPLANS, INTERMEDIS) <td>
+					<td>RAMPA AMB ELS PAR¿METRES ADEQUATS (AMPLADA, PENDENT, BARANES, REPLANS, INTERMEDIS) <td>
 					<td><input id="48" name="48" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>EL TAULELL PERMET L'APROXIMACI√ì DE LA PERSONA EN CADIRA DE RODES <td>
+					<td>EL TAULELL PERMET L'APROXIMACI” DE LA PERSONA EN CADIRA DE RODES <td>
 					<td><input id="57" name="57" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>EL TAULELL PERMET L'APROXIMACI√ì DE LA PERSONA EN CADIRA DE RODES <td>
+					<td>EL TAULELL PERMET L'APROXIMACI” DE LA PERSONA EN CADIRA DE RODES <td>
 					<td><input id="65" name="65" type="checkbox"/></td>
 				</tr>
 				<tr>
-					<td>EL TAULELL PERMET L'APROXIMACI√ì DE LA PERSONA EN CADIRA DE RODES <td>
+					<td>EL TAULELL PERMET L'APROXIMACI” DE LA PERSONA EN CADIRA DE RODES <td>
 					<td><input id="65" name="65" type="checkbox"/></td>
 				</tr>
 				<tr>
@@ -739,7 +770,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 						</select><td>
 				</tr>
 				<tr>
-					<td>BONA IL¬∑LUMINACI√ì DE L'ESTABLIMENT <td>
+					<td>BONA IL∑LUMINACI” DE L'ESTABLIMENT <td>
 					<td><select id="14" name="14" style="width:50px">
 							<option value="0">-	- -</option>
 							<option value="1">1</option>
