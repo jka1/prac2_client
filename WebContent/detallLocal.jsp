@@ -125,7 +125,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 
             	<tr>
                 <td style="text-align:left"><%=accessibilitat.getNomCaracteristicaCa()%>&#160;&#160;&#160;&#160;</td>
-                <% if(accessibilitat.getTipusCaracterisitca()==1) {
+                <% if(accessibilitat.getTipusCaracteristica()==1) {
                 	if(accessibilitat.getValor()==1) { %>
                 		<td><input type="checkbox" checked/></td>
                 		<% } else {%>
