@@ -20,6 +20,8 @@ public class AccessibilitatLocal  implements java.io.Serializable {
 
     private java.lang.String nomCaracteristicaEs;
 
+    private java.lang.Integer tipusCaracterisitca;
+
     private java.lang.Long valor;
 
     private java.lang.String verificat;
@@ -34,6 +36,7 @@ public class AccessibilitatLocal  implements java.io.Serializable {
            java.lang.String nomCaracteristicaCa,
            java.lang.String nomCaracteristicaEn,
            java.lang.String nomCaracteristicaEs,
+           java.lang.Integer tipusCaracterisitca,
            java.lang.Long valor,
            java.lang.String verificat) {
            this.codiAccessibilitat = codiAccessibilitat;
@@ -42,6 +45,7 @@ public class AccessibilitatLocal  implements java.io.Serializable {
            this.nomCaracteristicaCa = nomCaracteristicaCa;
            this.nomCaracteristicaEn = nomCaracteristicaEn;
            this.nomCaracteristicaEs = nomCaracteristicaEs;
+           this.tipusCaracterisitca = tipusCaracterisitca;
            this.valor = valor;
            this.verificat = verificat;
     }
@@ -168,6 +172,26 @@ public class AccessibilitatLocal  implements java.io.Serializable {
 
 
     /**
+     * Gets the tipusCaracterisitca value for this AccessibilitatLocal.
+     * 
+     * @return tipusCaracterisitca
+     */
+    public java.lang.Integer getTipusCaracterisitca() {
+        return tipusCaracterisitca;
+    }
+
+
+    /**
+     * Sets the tipusCaracterisitca value for this AccessibilitatLocal.
+     * 
+     * @param tipusCaracterisitca
+     */
+    public void setTipusCaracterisitca(java.lang.Integer tipusCaracterisitca) {
+        this.tipusCaracterisitca = tipusCaracterisitca;
+    }
+
+
+    /**
      * Gets the valor value for this AccessibilitatLocal.
      * 
      * @return valor
@@ -236,6 +260,9 @@ public class AccessibilitatLocal  implements java.io.Serializable {
             ((this.nomCaracteristicaEs==null && other.getNomCaracteristicaEs()==null) || 
              (this.nomCaracteristicaEs!=null &&
               this.nomCaracteristicaEs.equals(other.getNomCaracteristicaEs()))) &&
+            ((this.tipusCaracterisitca==null && other.getTipusCaracterisitca()==null) || 
+             (this.tipusCaracterisitca!=null &&
+              this.tipusCaracterisitca.equals(other.getTipusCaracterisitca()))) &&
             ((this.valor==null && other.getValor()==null) || 
              (this.valor!=null &&
               this.valor.equals(other.getValor()))) &&
@@ -270,6 +297,9 @@ public class AccessibilitatLocal  implements java.io.Serializable {
         }
         if (getNomCaracteristicaEs() != null) {
             _hashCode += getNomCaracteristicaEs().hashCode();
+        }
+        if (getTipusCaracterisitca() != null) {
+            _hashCode += getTipusCaracterisitca().hashCode();
         }
         if (getValor() != null) {
             _hashCode += getValor().hashCode();
@@ -326,6 +356,13 @@ public class AccessibilitatLocal  implements java.io.Serializable {
         elemField.setFieldName("nomCaracteristicaEs");
         elemField.setXmlName(new javax.xml.namespace.QName("", "nomCaracteristicaEs"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("tipusCaracterisitca");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "tipusCaracterisitca"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

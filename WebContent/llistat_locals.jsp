@@ -46,8 +46,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
   <form id="frm" name="frm" method="post" action="sLlistatLocals" >
   		
 	  <h4 class="w3-bar-item"><b>Filtre</b></h4>
-	  	  <a class="w3-bar-item">Codi Local</a>
-	  <input class="w3-hover-black" id="codiLocal" name="codiLocal" type="number" style="width:200px;margin-left:20px;" value="0"/>
+	  <input class="w3-hover-black" id="codiLocal" name="codiLocal" type="hidden" style="width:200px;margin-left:20px;" value="0"/>
 	  <a class="w3-bar-item">Nom Local</a>
 	  <input class="w3-hover-black" id="nomLocal" name="nomLocal" type="text" style="width:200px;margin-left:20px;"/>
 	  <a class="w3-bar-item">Tipus Local</a>
@@ -60,8 +59,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 				<option value="5">LOCALS PÚBLICS</option>
 				<option value="6">ENTITATS BANCÀRIES</option>
 			</select>
-	  <a class="w3-bar-item">Codi Carrer</a>
-	  <input class="w3-hover-black" id="codiCarrer" name="codiCarrer" type="number" style="width:200px;margin-left:20px;" value="0"/>
+	  <input class="w3-hover-black" id="codiCarrer" name="codiCarrer" type="hidden" style="width:200px;margin-left:20px;" value="0"/>
 	  <a class="w3-bar-item">Nom Carrer</a>
 	  <input class="w3-hover-black" id="nomcarrer" name="nomcarrer" type="text" style="width:200px;margin-left:20px;"/>
 	  <a class="w3-bar-item">Nom Via</a>
@@ -101,6 +99,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 	                <TH>Nom Local</TH>
 	                <TH>Carrer Local</TH>
 	                <TH>Número Local</TH>
+	                <TH>Verificat</TH>
 	            </TR>
 	            
 	            <% 
@@ -117,6 +116,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
                 <td style="text-align:center" onClick="detall(<%=local.getCodiLocal()%>);"><%=local.getNomLocal()%></td>
                 <td style="text-align:center"><%=local.getNomCarrer()%></td>
                 <td style="text-align:center"><%=local.getNumero()%></td>
+                <td style="text-align:center"><%=local.getVerificat()%></td>
                </tr>
             <%
             }

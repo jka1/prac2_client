@@ -52,7 +52,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 					<td>&#160;</td>
 					<td>&#160;</td>
 					<td style="text-align: center"><h1 class="w3-text-teal"><%=locals[0].getNomLocal()%></h1></td>
-				</tr>
+				</tr>3.
+				
 				<tr>
 					<td>Tipus Local: <td>
 					<%
@@ -124,7 +125,16 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 
             	<tr>
                 <td style="text-align:left"><%=accessibilitat.getNomCaracteristicaCa()%>&#160;&#160;&#160;&#160;</td>
-                <td><input type="checkbox" checked="<%=accessibilitat.getValor()%>"/></td>
+                <% if(accessibilitat.getTipusCaracterisitca()==1) {
+                	if(accessibilitat.getValor()==1) { %>
+                		<td><input type="checkbox" checked/></td>
+                		<% } else {%>
+                		<td><input type="checkbox"/></td>
+                		<% } %>
+                <%} else { %>
+                	<td><input type="text" style="width:20px" maxlength="2" value="<%=accessibilitat.getValor()%>" readonly=""/></td>
+                <% } %>
+                	
                </tr>
             <%
             }
