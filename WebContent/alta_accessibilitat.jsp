@@ -367,7 +367,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 				<tr><td>&#160;</td></tr>
 				<tr>
 					<td style="text-align: center">
-						<button type="button" style="width:200px;height: 40px;background-color:#4CAF50;border-top:none;border-botom:none;border-left:none;border-right:none;color:white" onclick="altaLocal();">
+						<button type="button" style="width:200px;height: 40px;background-color:#4CAF50;border-top:none;border-botom:none;border-left:none;border-right:none;color:white" onclick="altaAccessibilitat();">
 							FINALITZA
 						</button>
 					</td>
@@ -494,7 +494,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 				<tr><td>&#160;</td></tr>
 				<tr>
 					<td style="text-align: center">
-						<button type="button" style="width:200px;height: 40px;background-color:#4CAF50;border-top:none;border-botom:none;border-left:none;border-right:none;color:white" onclick="altaLocal();">
+						<button type="button" style="width:200px;height: 40px;background-color:#4CAF50;border-top:none;border-botom:none;border-left:none;border-right:none;color:white" onclick="altaAccessibilitat();">
 							FINALITZA
 						</button>
 					</td>
@@ -602,7 +602,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 				<tr><td>&#160;</td></tr>
 				<tr>
 					<td style="text-align: center">
-						<button type="button" style="width:200px;height: 40px;background-color:#4CAF50;border-top:none;border-botom:none;border-left:none;border-right:none;color:white" onclick="altaLocal();">
+						<button type="button" style="width:200px;height: 40px;background-color:#4CAF50;border-top:none;border-botom:none;border-left:none;border-right:none;color:white" onclick="altaAccessibilitat();">
 							FINALITZA
 						</button>
 					</td>
@@ -683,7 +683,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 				<tr><td>&#160;</td></tr>
 				<tr>
 					<td style="text-align: center">
-						<button type="button" style="width:200px;height: 40px;background-color:#4CAF50;border-top:none;border-botom:none;border-left:none;border-right:none;color:white" onclick="altaLocal();">
+						<button type="button" style="width:200px;height: 40px;background-color:#4CAF50;border-top:none;border-botom:none;border-left:none;border-right:none;color:white" onclick="altaAccessibilitat();">
 							FINALITZA
 						</button>
 					</td>
@@ -783,7 +783,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 				<tr><td>&#160;</td></tr>
 				<tr>
 					<td style="text-align: center">
-						<button type="button" style="width:200px;height: 40px;background-color:#4CAF50;border-top:none;border-botom:none;border-left:none;border-right:none;color:white" onclick="altaLocal();">
+						<button type="button" style="width:200px;height: 40px;background-color:#4CAF50;border-top:none;border-botom:none;border-left:none;border-right:none;color:white" onclick="altaAccessibilitat();">
 							FINALITZA
 						</button>
 					</td>

@@ -428,7 +428,7 @@ public class SvlAltaAccessibilitat extends HttpServlet {
 			}
 			
 			ServletContext context = getServletContext();
-			context.getRequestDispatcher("/llistat_Locals.jsp").forward(request, response);
+			context.getRequestDispatcher("/llistat_locals.jsp").forward(request, response);
 			
 		} catch(Exception e) {
 			e.printStackTrace();
